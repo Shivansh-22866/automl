@@ -1,3 +1,4 @@
+'use server'
 import { CreateUserParams, UpdateUserParams } from "@/types"
 import { connectToDatabase } from "../database"
 import User from "../database/models/user.model"

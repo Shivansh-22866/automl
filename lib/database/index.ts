@@ -12,7 +12,6 @@ export const connectToDatabase = async () => {
         "Please define the MONGODB_URI environment variable inside .env.local"
     );
 
-    console.log(`MONGODB_URI: ${MONGODB_URI}`)
 
     cached.promise  = cached.promise || mongoose.connect(MONGODB_URI, {
         bufferCommands: false,

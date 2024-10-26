@@ -13,3 +13,10 @@ export type CreateUserParams = {
     username: string
     photo: string
   }
+
+  export type CreateProjectParams = {
+    title: string,
+    description?: string,
+    fileUrl: string,
+    ownerId: string
+  }
