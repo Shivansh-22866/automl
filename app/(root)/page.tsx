@@ -1,5 +1,5 @@
 import React from 'react';
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs/server";
 import {
@@ -10,21 +10,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  Activity,
   Brain,
   GitBranch,
   History,
-  LayoutDashboard,
-  Server,
   Settings,
   Star,
-  Zap
 } from "lucide-react";
 import CreateProjectForm from "@/components/shared/ProjectForm";
 import PerformanceChart from '@/components/shared/PerformanceChart';
 
-const ModelCard = ({ name, status, metric, change } : any) => (
-  <Card>
+const ModelCard = ({ name, metric, change, status }: { name: string; metric: string; change: number; status: string; }) => (
+  <Card id={status}>
     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
       <CardTitle className="text-sm font-medium">
         {name}
@@ -46,31 +42,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="flex">
-        {/* Sidebar */}
-        <div className="hidden lg:flex flex-col w-64 bg-white dark:bg-gray-800 border-r">
-          <div className="p-6">
-            <h1 className="text-2xl font-bold flex items-center gap-2">
-              <Zap className="w-6 h-6 text-blue-500" />
-              MLOps Hub
-            </h1>
-          </div>
-          <nav className="flex-1 p-4">
-            {['Dashboard', 'Models', 'Deployments', 'Monitoring', 'Settings'].map((item) => (
-              <div key={item} className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg cursor-pointer">
-                {item === 'Dashboard' && <LayoutDashboard className="w-5 h-5" />}
-                {item === 'Models' && <Brain className="w-5 h-5" />}
-                {item === 'Deployments' && <Server className="w-5 h-5" />}
-                {item === 'Monitoring' && <Activity className="w-5 h-5" />}
-                {item === 'Settings' && <Settings className="w-5 h-5" />}
-                {item}
-              </div>
-            ))}
-          </nav>
-          <div className="p-4 border-t">
-            <UserButton />
-          </div>
-        </div>
-
         {/* Main Content */}
         <div className="flex-1">
           <SignedIn>
